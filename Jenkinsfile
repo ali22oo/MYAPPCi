@@ -1,19 +1,11 @@
-  node{
+node{
    stage('SCM Checkout'){
-     git 'https://github.com/ali22oo/MYAPPCi'
+       git credentialsId: 'creden1', url: 'https://github.com/javahometech/my-app'
    }
-   //stage('Email Notification'){
-   //  mail bcc: '', body: 'Hi Welcome to jenkins email alerts Thanks', cc: 'alioo@hotmail.com', from: '', replyTo: '', subject: 'Testing CC', to: 'alioo@hotmail.com'
-
+        stage('Mvn Package'){
+     def mvnHome = tool name: 'maven-3', type: 'maven'
+     def mvnCMD = "${mvnHome}/bin/mvn"
+     sh "${mvnCMD} clean package"
    }
-   //stage('Slack Notification'){
-   //    slackSend baseUrl: 'https://hooks.slack.com/services/',
-     //  channel: '#jenkins-pipeline-demo',
-     //  color: 'good', 
-     //  message: 'Welcome to Jenkins, Slack!', 
-      // teamDomain: 'javahomecloud',
-     //  tokenCredentialId: 'slack-demo'
-   //}
-// }
-
+   }
 
